@@ -31,7 +31,7 @@ SIMULATED_TRANSLATION = {
 class AlertManager:
     def __init__(self):
         self.client = None
-        self.log_file = "alerts_log.json"
+        self.log_file = "/tmp/alerts_log.json"
         logger.warning("⚠️ Running in optimized simulation mode (Persistence enabled)")
 
     def _log_to_file(self, to, channel, message, sid):

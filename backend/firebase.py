@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 class FirestoreManager:
     def __init__(self):
-        self.db_file = "local_db.json"
+        self.db_file = "/tmp/local_db.json"
         self._initialize_db()
         logger.warning(f"🏛️ Running in JSON Persistence Mode (Local File: {self.db_file})")
 
