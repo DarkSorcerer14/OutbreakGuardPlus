@@ -1,0 +1,14 @@
+{
+  "rainfall_mm": 0.10514324973377116,
+  "flood_proximity_km": 0.10596380756970973,
+  "water_ph": 0.10448979319501692,
+  "turbidity_ntu": 0.09796022647749032,
+  "temperature_c": 0.05574170773372324,
+  "humidity_pct": 0.05417649750249327,
+  "historical_cases": 0.10095618939694738,
+  "ors_sales_spike": 0.11051160372626477,
+  "antibiotic_sales_spike": 0.05351040958056259,
+  "fever_med_sales_spike": 0.058181099423374495,
+  "population_density": 0.054997591641126796,
+  "sanitation_score": 0.09836782401951938
+}
