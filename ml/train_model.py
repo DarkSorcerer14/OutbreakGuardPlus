@@ -41,9 +41,7 @@ FEATURES = [
     'population_density', 'sanitation_score',
 ]
 
-# ═══════════════════════════════════════════════════════════════════════
 # 1.  DOWNLOAD REAL DATASETS
-# ═══════════════════════════════════════════════════════════════════════
 
 def download_kaggle_water_potability() -> pd.DataFrame:
     """
@@ -107,9 +105,7 @@ def download_huggingface_cholera() -> pd.DataFrame:
     return None
 
 
-# ═══════════════════════════════════════════════════════════════════════
 # 2.  FEATURE ENGINEERING  –  Map real columns → 12 model features
-# ═══════════════════════════════════════════════════════════════════════
 
 def engineer_water_features(df_water: pd.DataFrame) -> pd.DataFrame:
     """
@@ -122,11 +118,9 @@ def engineer_water_features(df_water: pd.DataFrame) -> pd.DataFrame:
 
     out = pd.DataFrame()
 
-    # ── Direct mappings ─────────────────────────────────────────────────
     out['water_ph'] = df['ph'].clip(5.5, 9.0)
     out['turbidity_ntu'] = (df['Turbidity'] * 15).clip(0, 100)  # scale 0-7 → 0-100 NTU
 
-    # ── Derived / proxy mappings ────────────────────────────────────────
     # Hardness ↔ proxy for dissolved contaminants → use as sanitation inverse
     out['sanitation_score'] = (100 - MinMaxScaler().fit_transform(
         df[['Hardness']]) * 100).flatten().clip(0, 100).round(1)
@@ -174,7 +168,6 @@ def engineer_water_features(df_water: pd.DataFrame) -> pd.DataFrame:
     )
     out['historical_cases'] = contamination_score.clip(0, 500).astype(int)
 
-    # ── Potability label → initial risk assignment ──────────────────────
     # Non-potable water = higher baseline risk
     out['_potability'] = df['Potability'].values
 
@@ -195,7 +188,6 @@ def engineer_cholera_features(df_cholera: pd.DataFrame) -> pd.DataFrame:
     n = len(df)
     np.random.seed(99)
 
-    # ── Map WASH columns ────────────────────────────────────────────────
     # safe_water_access (boolean) → water_ph (unsafe water = extreme pH)
     if 'safe_water_access' in df.columns:
         safe = df['safe_water_access'].astype(str).str.lower().isin(['true', '1', 'yes', 'safe'])
@@ -247,7 +239,6 @@ def engineer_cholera_features(df_cholera: pd.DataFrame) -> pd.DataFrame:
     else:
         out['fever_med_sales_spike'] = np.random.uniform(0.5, 7.5, n).round(1)
 
-    # ── Environmental proxies ───────────────────────────────────────────
     # scenario → rainfall proxy (community outbreaks often follow floods)
     if 'scenario' in df.columns:
         rain_map = {'cholera_treatment_centre': 120, 'district_hospital': 160,
@@ -270,7 +261,6 @@ def engineer_cholera_features(df_cholera: pd.DataFrame) -> pd.DataFrame:
     else:
         out['historical_cases'] = np.random.randint(10, 400, n)
 
-    # ── Carry over real clinical outcome for labelling ──────────────────
     if 'outcome' in df.columns:
         out['_outcome'] = df['outcome'].astype(str).str.lower()
     if 'dehydration_severity' in df.columns:
@@ -282,9 +272,7 @@ def engineer_cholera_features(df_cholera: pd.DataFrame) -> pd.DataFrame:
     return out
 
 
-# ═══════════════════════════════════════════════════════════════════════
 # 3.  LABEL ASSIGNMENT  (informed by real clinical signals)
-# ═══════════════════════════════════════════════════════════════════════
 
 def assign_risk_label(row) -> int:
     """Multi-factor risk scoring using REAL water + disease signals."""
@@ -358,9 +346,7 @@ def assign_disease_label(row) -> int:
         return 1  # Default → Cholera
 
 
-# ═══════════════════════════════════════════════════════════════════════
 # 4.  MAIN TRAINING PIPELINE
-# ═══════════════════════════════════════════════════════════════════════
 
 def main():
     print("=" * 70)
@@ -368,13 +354,11 @@ def main():
     print("=" * 70)
     print()
 
-    # ── Step 1: Download datasets ───────────────────────────────────────
     df_water_raw = download_kaggle_water_potability()
     df_cholera_raw = download_huggingface_cholera()
 
     frames = []
 
-    # ── Step 2: Engineer features ───────────────────────────────────────
     if df_water_raw is not None:
         df_water = engineer_water_features(df_water_raw)
         frames.append(df_water)
@@ -383,7 +367,6 @@ def main():
         df_cholera = engineer_cholera_features(df_cholera_raw)
         frames.append(df_cholera)
 
-    # ── Fallback: if no real data available, generate synthetic ─────────
     if not frames:
         print("\n⚠️  No real datasets could be loaded. Generating synthetic data …")
         np.random.seed(42)
@@ -404,7 +387,6 @@ def main():
         })
         frames.append(synth)
 
-    # ── Step 3: Combine & clean ─────────────────────────────────────────
     df = pd.concat(frames, ignore_index=True)
 
     # Keep only the 12 model features (drop helper columns like _potability)
@@ -415,7 +397,6 @@ def main():
 
     print(f"\n📊  Combined dataset: {len(df)} samples")
 
-    # ── Step 4: Assign labels ───────────────────────────────────────────
     print("🏷️  Assigning risk and disease labels …")
     df['risk_level'] = df.apply(assign_risk_label, axis=1)
     df['disease_type'] = df.apply(assign_disease_label, axis=1)
@@ -440,12 +421,10 @@ def main():
         pct = cnt / len(df) * 100
         print(f"   {name:>7s}: {cnt:>6,}  ({pct:.1f}%)")
 
-    # ── Step 5: Save merged dataset ─────────────────────────────────────
     dataset_path = os.path.join(SCRIPT_DIR, 'dataset.csv')
     df.to_csv(dataset_path, index=False)
     print(f"\n💾  Dataset saved → {dataset_path}  ({len(df)} rows)")
 
-    # ── Step 6: Train / Test split ──────────────────────────────────────
     X = df[FEATURES]
     y_risk = df['risk_level']
     y_disease = df['disease_type']
@@ -457,10 +436,7 @@ def main():
         X, y_disease, test_size=0.2, random_state=42, stratify=y_disease
     )
 
-    # ── Step 7: Train Risk Model ────────────────────────────────────────
-    print("\n" + "═" * 50)
     print("  Training Risk-Level Model (Random Forest)")
-    print("═" * 50)
     risk_model = RandomForestClassifier(
         n_estimators=200,
         max_depth=14,
@@ -483,10 +459,7 @@ def main():
     cv_scores = cross_val_score(risk_model, X, y_risk, cv=cv, scoring='accuracy')
     print(f"  5-Fold CV Accuracy: {cv_scores.mean():.4f} ± {cv_scores.std():.4f}")
 
-    # ── Step 8: Train Disease Model ─────────────────────────────────────
-    print("\n" + "═" * 50)
     print("  Training Disease-Type Model (Random Forest)")
-    print("═" * 50)
     disease_model = RandomForestClassifier(
         n_estimators=200,
         max_depth=14,
@@ -505,7 +478,6 @@ def main():
                                 target_names=['None', 'Cholera', 'Typhoid', 'Both'],
                                 zero_division=0))
 
-    # ── Step 9: Feature Importance ──────────────────────────────────────
     importances = risk_model.feature_importances_
     feature_importance = dict(zip(FEATURES, importances.tolist()))
 
@@ -516,7 +488,6 @@ def main():
         bar = "█" * int(imp * 80)
         print(f"  {feat:>25s} : {imp:.4f}  {bar}")
 
-    # ── Step 10: Save Models ────────────────────────────────────────────
     joblib.dump(risk_model, os.path.join(MODELS_DIR, 'risk_model.pkl'))
     joblib.dump(disease_model, os.path.join(MODELS_DIR, 'disease_model.pkl'))
     joblib.dump(FEATURES, os.path.join(MODELS_DIR, 'feature_names.pkl'))

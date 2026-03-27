@@ -185,7 +185,6 @@ export default function Dashboard() {
         </button>
       </div>
 
-      {/* ═══ Stat Cards ═══ */}
       <div className="stat-grid">
         <div className="stat-card red fade-in fade-in-delay-1">
           <div className="stat-icon"><AlertTriangle size={20} /></div>
@@ -213,7 +212,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* ═══ Three Layer Status Cards ═══ */}
       <div className="grid-3 fade-in">
         <div className="card" style={{ borderTop: '3px solid #3b82f6' }}>
           <div className="card-header">
@@ -288,7 +286,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* ═══ Charts Row ═══ */}
       <div className="grid-3 fade-in">
         <div className="card">
           <div className="card-header">
@@ -321,7 +318,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* ═══ High Risk Zones + Recent Alerts ═══ */}
       <div className="grid-2 fade-in">
         <div className="card">
           <div className="card-header">

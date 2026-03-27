@@ -23,7 +23,6 @@ app = Flask(__name__)
 OWM_API_KEY = os.environ.get('OPENWEATHERMAP_API_KEY', '')
 CORS(app)
 
-# ─── Load ML Models ─────────────────────────────────────────────────────
 MODELS_DIR = os.path.join(os.path.dirname(__file__), 'models')
 
 try:
@@ -40,7 +39,6 @@ except Exception as e:
     feature_names = None
     feature_importance = {}
 
-# ─── Simulated Data Store ───────────────────────────────────────────────
 RISK_LABELS = {0: "Low", 1: "Medium", 2: "High"}
 DISEASE_LABELS = {0: "None", 1: "Cholera", 2: "Typhoid", 3: "Dysentery", 4: "Hepatitis A", 5: "E. Coli", 6: "Gastroenteritis"}
 
@@ -128,9 +126,7 @@ def predict_zone_risk(zone_data):
     return risk_level, disease_type, days_to_peak, risk_proba.tolist()
 
 
-# ═══════════════════════════════════════════════════════════════════════
 # API ENDPOINTS
-# ═══════════════════════════════════════════════════════════════════════
 
 @app.route('/api/health', methods=['GET'])
 def health_check():
@@ -442,9 +438,7 @@ def generate_recommendations(risk_level, disease_type, data):
     return recs
 
 
-# ═══════════════════════════════════════════════════════════════════════
 # WEATHER DATA (OpenWeatherMap)
-# ═══════════════════════════════════════════════════════════════════════
 
 @app.route('/api/weather/<city>', methods=['GET'])
 def get_weather(city):

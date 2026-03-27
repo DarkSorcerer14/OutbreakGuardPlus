@@ -11,12 +11,11 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarEleme
 
 export default function WaterGuard() {
   const [trends, setTrends] = useState([]);
-  const [zones, setZones] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const load = async () => {
-      const [t, z] = await Promise.all([fetchWaterTrends(), fetchZones()]);
+      const [t] = await Promise.all([fetchWaterTrends()]);
       setTrends(t);
       setZones(z);
       setLoading(false);

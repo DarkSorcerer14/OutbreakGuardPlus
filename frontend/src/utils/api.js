@@ -20,7 +20,6 @@ api.interceptors.response.use(
   }
 );
 
-// ─── Mock Data ──────────────────────────────────────────────────────────
 
 const MOCK_ZONES = [
   { id: "z1", name: "Dharavi, Mumbai", lat: 19.0430, lng: 72.8567, population: 850000, state: "Maharashtra", risk_level: "High", risk_score: 2, disease_predicted: "Cholera", days_to_peak: 3, confidence: 92.4, water_data: { ph: 5.9, turbidity: 72, rainfall: 210, flood_proximity: 3.2 }, pharma_data: { ors_spike: 7.2, antibiotic_spike: 5.8, fever_med_spike: 6.1 }, environment: { temperature: 34, humidity: 88, sanitation_score: 22 } },
@@ -92,7 +91,6 @@ const MOCK_ALERTS = [
   { id: "alert_8", zone: "Dharavi, Mumbai", state: "Maharashtra", type: "ASHA Worker", language: "Marathi", message: "Door-to-door outreach required. High cholera risk zone.", recipients: 35, delivered: 35, status: "delivered" },
 ];
 
-// ─── API Functions ──────────────────────────────────────────────────────
 
 export const fetchDashboardSummary = async () => {
   try {
