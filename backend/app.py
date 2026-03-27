@@ -511,6 +511,50 @@ def system_status():
         "version": "1.0.0",
     })
 
+@app.route('/api/system/simulate-outbreak', methods=['POST'])
+def simulate_outbreak():
+    """Manually trigger a simulated outbreak in a specific zone for testing alerts"""
+    zone_id = request.json.get('zone_id', 'z1')
+    zone = next((z for z in ZONES if z['id'] == zone_id), ZONES[0])
+    
+    # Generate high-risk data
+    data = {
+        'rainfall_mm': 280.5,
+        'flood_proximity_km': 1.2,
+        'water_ph': 5.8,
+        'turbidity_ntu': 88.4,
+        'temperature_c': 38.2,
+        'humidity_pct': 92.5,
+        'historical_cases': 450,
+        'ors_sales_spike': 8.5,
+        'antibiotic_sales_spike': 7.2,
+        'fever_med_sales_spike': 7.8,
+        'population_density': int(zone.get('population', 500000)) / 10,
+        'sanitation_score': 15.2,
+    }
+    
+    result = predict_zone_risk(data)
+    risk_level, disease_type, days_to_peak = result[0], result[1], result[2]
+    
+    # Store in firestore (simulated)
+    firestore_manager.update_zone_risk(zone_id, {
+        "risk_level": RISK_LABELS[risk_level],
+        "risk_score": risk_level,
+        "timestamp": datetime.now().isoformat()
+    })
+    
+    # Send high-priority alert (simulated)
+    msg = f"🛡️ OutbreakGuard+ CRITICAL ALERT: High {DISEASE_LABELS[disease_type]} risk detected in {zone['name']}. Boil water immediately."
+    alert_manager.send_sms("+919999999999", msg)
+    
+    return jsonify({
+        "status": "simulation_triggered",
+        "zone": zone['name'],
+        "risk_detected": RISK_LABELS[risk_level],
+        "disease": DISEASE_LABELS[disease_type],
+        "alert_sent": True
+    })
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

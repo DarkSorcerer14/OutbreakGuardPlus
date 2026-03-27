@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
-import { RefreshCw } from 'lucide-react';
+import { RefreshCw, Zap } from 'lucide-react';
+import axios from 'axios';
 
 const pageTitles = {
   '/': 'Command Center',
@@ -16,6 +17,19 @@ export default function Header() {
   const location = useLocation();
   const title = pageTitles[location.pathname] || 'Dashboard';
 
+  const handleSimulate = async () => {
+    try {
+      if (confirm('Simulate a critical outbreak in Dharavi to test alerts?')) {
+        await axios.post('http://localhost:5000/api/system/simulate-outbreak', { zone_id: 'z1' });
+        alert('Simulation triggered! Check Terminal for alerts.');
+        window.location.reload();
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Simulation failed. Is backend running?');
+    }
+  };
+
   return (
     <header className="top-header">
       <div className="header-left">
@@ -25,6 +39,14 @@ export default function Header() {
         </span>
       </div>
       <div className="header-right">
+        <button 
+          className="header-btn" 
+          onClick={handleSimulate}
+          style={{ background: 'var(--accent-red-soft)', color: 'var(--accent-red)', borderColor: 'var(--accent-red)' }}
+        >
+          <Zap size={14} />
+          Simulate Outbreak
+        </button>
         <div className="live-indicator">
           <span className="live-dot"></span>
           LIVE MONITORING
