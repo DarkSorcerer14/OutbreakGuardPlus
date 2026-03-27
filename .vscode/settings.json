@@ -1,0 +1,7 @@
+{
+  "python.analysis.extraPaths": [
+    "./backend",
+    "C:\\Users\\ayush\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages"
+  ],
+  "python.defaultInterpreterPath": "C:\\Users\\ayush\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
+}

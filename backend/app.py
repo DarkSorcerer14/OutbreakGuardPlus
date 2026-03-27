@@ -14,7 +14,6 @@ import requests as http_requests
 from datetime import datetime, timedelta
 from alerts import alert_manager
 from firebase import firestore_manager
-
 app = Flask(__name__)
 
 # OpenWeatherMap API key (set via environment variable)
