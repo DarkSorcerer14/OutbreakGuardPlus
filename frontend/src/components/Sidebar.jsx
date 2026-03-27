@@ -23,7 +23,7 @@ export default function Sidebar() {
     <aside className="sidebar">
       <div className="sidebar-logo">
         <h1>
-          <span className="logo-icon">🛡️</span>
+          <img src="/logo.jpeg" alt="Logo" style={{ height: '32px', width: 'auto', maxWidth: '120px', borderRadius: '4px', objectFit: 'contain', marginRight: '8px' }} />
           OutbreakGuard+
         </h1>
         <div className="logo-sub">Early Warning System</div>
