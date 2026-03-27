@@ -95,7 +95,5 @@ OutbreakGuard+ is built upon a premium dark-themed design system emphasizing dat
 
 ---
 
-## Ownership and License
+## Ownership
 Developed by the Kernel Krew.
-Copyright 2026 OutbreakGuard Research Group.
-All rights reserved.
