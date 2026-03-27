@@ -1,4 +1,4 @@
-# OutbreakGuard+ 🛡️
+# OutbreakGuard+ 
 ### AI-Powered Waterborne Disease Early Warning & Response System
 
 OutbreakGuard+ is a comprehensive, three-layer AI-driven platform designed to predict, monitor, and mitigate waterborne disease outbreaks (like Cholera and Typhoid). It leverages water quality sensors, pharmacy sales data, and environmental factors to provide actionable insights for health authorities.
