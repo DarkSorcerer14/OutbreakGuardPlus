@@ -524,8 +524,8 @@ def system_status():
             "accuracy": 94.2,
         },
         "integrations": {
-            "twilio": {"status": "simulation" if alert_manager.client is None else "connected"},
-            "firebase": {"status": "simulation" if firestore_manager.db is None else "connected"},
+            "twilio": {"status": "simulation"},
+            "firebase": {"status": "simulation"},
             "openweathermap": {"status": "connected" if OWM_API_KEY else "not configured"},
         },
         "zones_monitored": len(ZONES),
