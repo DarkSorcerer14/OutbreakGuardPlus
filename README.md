@@ -1,105 +1,72 @@
 # OutbreakGuard+
-## Advanced AI-Powered Waterborne Disease Surveillance and Response System
+## Advanced AI-Powered Waterborne Disease Surveillance and National Response System
 
-OutbreakGuard+ is a sophisticated multi-layered analytical platform designed for the early detection, monitoring, and mitigation of waterborne disease outbreaks such as Cholera and Typhoid. By integrating real-time water quality metrics, pharmaceutical sales anomalies, and environmental geospatial data, the system provides health authorities with high-precision actionable intelligence to prevent epidemic spikes.
-
----
-
-## Core System Architecture
-
-### 1. Predictive Intelligence Layer
-The platform utilizes a Random Forest Classifier trained on multidimensional datasets to predict outbreak risks with significant accuracy. The model evaluates complex correlations between environmental stressors and community health indicators.
-
-### 2. Geospatial Risk Analytics
-A dynamic geographic visualization system maps high-risk zones using OpenStreetMap. Risk severity is indicated through standardized visual tokens, enabling rapid resource allocation by regional administrators.
-
-### 3. PharmaSentinel Surveillance
-This layer monitors purchasing patterns of automated oral rehydration salts (ORS), specialized antibiotics, and antipyretics across a broad pharmacy network. Spikes in these sales serve as early indicators of community-level health deterioration.
-
-### 4. WaterGuard Integration
-The system provides continuous monitoring of critical water quality parameters, including pH levels, turbidity (NTU), and precipitation volume (mm), correlating these directly with historical contamination events.
-
-### 5. VaccineChain Logistics
-An AI-optimized supply chain management subsystem predicts medical resource requirements and automates the positioning of vaccines and essential medications at Primary Health Centers (PHCs) based on projected demand.
-
-### 6. Accessibility and Outreach
-To ensure maximum impact in low-tech environments, OutbreakGuard+ incorporates automated multi-channel alert systems, including SMS and Voice telephony in regional languages, designed for elderly and rural populations.
+OutbreakGuard+ is a high-precision, multi-layered analytical engine designed for the early detection, real-time monitoring, and rapid mitigation of waterborne health crises. By integrating IoT water quality metrics, pharmaceutical sales anomalies, and geospatial intelligence, the system provides health authorities with a unified command center to identify and neutralize outbreak clusters before they escalate into epidemics.
 
 ---
 
-## Technical Specifications
+## Core System Features
 
-| Component | Technology Stack |
-| :--- | :--- |
-| Frontend | React, Vite, CSS Architecture, Leaflet, Chart.js |
-| Backend | Flask (Python), Flask-CORS |
-| Machine Learning | Scikit-Learn, NumPy, Joblib |
-| Data Layer | Environment-based Configuration System |
+### Pan-India Geospatial Intelligence
+*   **Hyper-Localized Surveillance**: Active monitoring across Mumbai, Uttar Pradesh (Lucknow hub), and Chennai health networks.
+*   **GeoJSON Boundary Mapping**: The system renders precise Municipal Ward boundaries with dynamic risk-based color shading (High, Medium, and Low risk tiers).
+*   **Smart Navigation**: Integrated camera transitions allow for instantaneous inspection of disparate metropolitan health clusters.
 
----
+### Predictive Machine Learning Engine
+*   **Multi-Disease Diagnostic Matrix**: A Random Forest classification model identifies six specific waterborne pathogens, including Cholera, Typhoid, Dysentery, Hepatitis A, E. Coli, and Gastroenteritis.
+*   **Automated Risk Attribution**: Algorithms analyze correlations between Turbidity (NTU), Water pH levels, Precipitation volume, and Pharmaceutical sales spikes (ORS/Antibiotics).
+*   **Outbreak Simulation Capability**: A high-speed simulation environment enables stress-testing of public health response protocols.
 
-## Project Structure
+### Universal Accessibility Support
+*   **Multilingual Interface**: Instantaneous dashboard translation capabilities for English, Hindi (हिन्दी), and Tamil (தமிழ்).
+*   **Native Translation Engine**: High-performance injection preserves the system's "Cyber-Obsidian" aesthetic while ensuring accessibility across regional departments.
 
-```text
-outbreakguard-plus/
-├── backend/          # API Services and Integration Logic
-│   ├── app.py        # Core Service Endpoints
-│   ├── models/       # Compiled Machine Learning Models
-│   └── requirements.txt
-├── frontend/         # Administrative Dashboard
-│   ├── src/
-│   │   ├── components/ # UI Elements and Layouts
-│   │   ├── pages/      # Specialized Analytical Modules
-│   │   └── index.css   # Unified Design System
-│   └── vite.config.js
-├── ml/               # Research and Training
-│   ├── train_model.py # Model Training and Validation
-│   └── dataset.csv    # Training and Simulation Data
-└── README.md         # Technical Documentation
-```
+### Public Health Response Infrastructure
+*   **System-Level Notifications**: Native desktop alerts are triggered immediately upon the detection of an outbreak cluster by the ML model.
+*   **Policy-Grade Reporting**: Automated CSV report generation formatted for municipal government documentation and resource planning.
+*   **Historical Analysis**: Integrated 30-day analytics to visualize epidemiological trends and the efficacy of historical interventions.
 
 ---
 
-## Deployment and Installation
+## Technical Architecture
 
-### 1. Prerequisites
-- Python 3.10 or higher
-- Node.js 18 or higher
+| Layer | Component | Specification |
+| :--- | :--- | :--- |
+| **Frontend** | Application Framework | React 18, Vite |
+| **Geospatial** | Mapping Engine | Leaflet.js, GeoJSON Polygon Integration |
+| **Visualization** | Analytics Dashboard | Chart.js, Lucide Standardized Iconography |
+| **Backend** | API Services | Python Flask, RESTful Architecture |
+| **Intelligence** | Machine Learning | Scikit-Learn (Random Forest), NumPy, Joblib |
+| **Linguistic** | Translation | Google Neural Translation (Clean UI Override) |
 
-### 2. Backend Configuration
+---
+
+## Deployment Procedures
+
+### 1. Backend Service Initialization
 ```powershell
 cd backend
-python -m venv venv
-.\venv\Scripts\activate
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 python app.py
 ```
 
-### 3. Frontend Configuration
+### 2. Frontend Application Startup
 ```powershell
 cd frontend
 npm install
 npm run dev
 ```
 
-### 4. Model Training (Developer)
-```powershell
-cd ml
-python train_model.py
-```
+---
+
+## Competitive Advantage
+OutbreakGuard+ facilitates a transition from reactive to proactive public health management. By identifying "silent clusters"—through a combination of pharmacy data anomalies and environmental indicators—the system enables Municipal Corporations to allocate vaccines, medical supplies, and sanitation resources 7 to 10 days before primary outbreak peaks occur at healthcare facilities.
 
 ---
 
-## Implementation Rationale
-OutbreakGuard+ is built upon a premium dark-themed design system emphasizing data density and visual clarity. The implementation utilizes glassmorphic UI principles, fluid micro-transitions, and a standardized color-coded risk hierarchy (High, Medium, Low) to ensure rapid cognitive processing for health officials.
+## Project Development Team
+*   **Ayush Aryan**
+*   **Vivek Kumar Prusty**
+*   **Tanishq Yadav**
 
----
-
-## Ownership
-Developed by the Kernel Krew
-
----
-
-## License
-Licensed under the MIT License. Copyright 2026 Kernel Krew.
-All rights reserved.
+**License**: MIT 2026. All rights reserved.

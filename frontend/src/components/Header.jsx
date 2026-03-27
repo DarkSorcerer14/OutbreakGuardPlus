@@ -45,8 +45,8 @@ export default function Header() {
         
         // Trigger native browser notification
         if ('Notification' in window && Notification.permission === 'granted') {
-          new Notification('CRITICAL: Cholera Alert 🚨', {
-            body: 'OutbreakGuard ML has detected a high-risk outbreak in Dharavi. Dispatching medical aid now.',
+          new Notification('CRITICAL: Outbreak Alert', {
+            body: 'OutbreakGuard Analytics engine has detected a high-risk outbreak in Dharavi. Dispatching medical aid now.',
             icon: '/favicon.ico'
           });
         }
