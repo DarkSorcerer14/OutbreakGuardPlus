@@ -58,6 +58,16 @@ ZONES = [
     {"id": "z10", "name": "Chembur", "lat": 19.0522, "lng": 72.8996, "population": 640000, "state": "Maharashtra"},
     {"id": "z11", "name": "Bandra West", "lat": 19.0596, "lng": 72.8295, "population": 410000, "state": "Maharashtra"},
     {"id": "z12", "name": "Vile Parle", "lat": 19.0968, "lng": 72.8517, "population": 310000, "state": "Maharashtra"},
+    # Uttar Pradesh Zones
+    {"id": "u1", "name": "Hazratganj, Lucknow", "lat": 26.8467, "lng": 80.9462, "population": 550000, "state": "Uttar Pradesh"},
+    {"id": "u2", "name": "Gomti Nagar", "lat": 26.8582, "lng": 80.9982, "population": 650000, "state": "Uttar Pradesh"},
+    {"id": "u3", "name": "Varanasi Ghats", "lat": 25.3176, "lng": 82.9739, "population": 420000, "state": "Uttar Pradesh"},
+    {"id": "u4", "name": "Prayagraj", "lat": 25.4358, "lng": 81.8463, "population": 480000, "state": "Uttar Pradesh"},
+    # Chennai Zones
+    {"id": "c1", "name": "T. Nagar", "lat": 13.0418, "lng": 80.2341, "population": 350000, "state": "Tamil Nadu"},
+    {"id": "c2", "name": "Adyar", "lat": 13.0012, "lng": 80.2565, "population": 420000, "state": "Tamil Nadu"},
+    {"id": "c3", "name": "Velachery", "lat": 12.9815, "lng": 80.2184, "population": 550000, "state": "Tamil Nadu"},
+    {"id": "c4", "name": "Anna Nagar", "lat": 13.0850, "lng": 80.2101, "population": 480000, "state": "Tamil Nadu"},
 ]
 
 def generate_zone_data(zone):

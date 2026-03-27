@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet';
+import { useState, useEffect, useRef } from 'react';
+import { MapContainer, TileLayer, CircleMarker, Popup, GeoJSON } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { fetchZones } from '../utils/api';
+import { mumbaiWards } from '../data/mumbaiWards';
 
 const riskColors = {
   High: '#ef4444',
@@ -15,10 +16,18 @@ const riskRadius = {
   Low: 9,
 };
 
+const CITIES = {
+  mumbai: { name: 'Mumbai', center: [19.0760, 72.8777], zoom: 11 },
+  up: { name: 'Uttar Pradesh', center: [26.8467, 80.9462], zoom: 11 },
+  chennai: { name: 'Chennai', center: [13.0827, 80.2707], zoom: 11 },
+};
+
 export default function RiskHeatmap() {
   const [zones, setZones] = useState([]);
   const [filter, setFilter] = useState('all');
   const [loading, setLoading] = useState(true);
+  const [activeCity, setActiveCity] = useState('mumbai');
+  const mapRef = useRef(null);
 
   useEffect(() => {
     const load = async () => {
@@ -29,6 +38,25 @@ export default function RiskHeatmap() {
     load();
   }, []);
 
+  const flyToCity = (cityKey) => {
+    setActiveCity(cityKey);
+    if (mapRef.current) {
+      mapRef.current.flyTo(CITIES[cityKey].center, CITIES[cityKey].zoom);
+    }
+  };
+
+  const getWardStyle = (feature) => {
+    const zone = zones.find(z => z.id === feature.properties.id);
+    const risk = zone ? zone.risk_level : 'Low';
+    return {
+      fillColor: riskColors[risk],
+      fillOpacity: 0.25,
+      weight: 1.5,
+      color: riskColors[risk],
+      opacity: 0.6
+    };
+  };
+
   const filtered = filter === 'all' ? zones : zones.filter(z => z.risk_level.toLowerCase() === filter);
 
   if (loading) {
@@ -38,10 +66,23 @@ export default function RiskHeatmap() {
   return (
     <div>
       <div className="page-title-section fade-in">
-        <h1 className="page-title">📍 Live Risk Heatmap</h1>
+        <h1 className="page-title">📍 Pan-India Risk Network</h1>
         <p className="page-description">
-          Real-time visualization of outbreak risk across monitored zones. Circle size and color indicate risk severity.
+          Cross-metropolitan surveillance. Polygon shading indicates live risk across Mumbai, Delhi, and Chennai.
         </p>
+      </div>
+
+      <div style={{ display: 'flex', gap: 12, marginBottom: 20 }}>
+        {Object.entries(CITIES).map(([key, city]) => (
+          <button 
+            key={key}
+            className={`layer-tab ${activeCity === key ? 'active' : ''}`}
+            onClick={() => flyToCity(key)}
+            style={{ flex: 1, justifyContent: 'center' }}
+          >
+            {city.name}
+          </button>
+        ))}
       </div>
 
       {/* Filter tabs */}
@@ -67,8 +108,9 @@ export default function RiskHeatmap() {
       <div className="card fade-in" style={{ padding: 0, overflow: 'hidden' }}>
         <div className="map-container" style={{ height: 550 }}>
           <MapContainer
-            center={[23.5, 80]}
-            zoom={5}
+            center={CITIES.mumbai.center}
+            zoom={CITIES.mumbai.zoom}
+            ref={mapRef}
             style={{ height: '100%', width: '100%' }}
             scrollWheelZoom={true}
           >
@@ -76,6 +118,12 @@ export default function RiskHeatmap() {
               url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
               attribution='&copy; <a href="https://carto.com/">CARTO</a>'
             />
+            
+            <GeoJSON 
+              data={mumbaiWards} 
+              style={getWardStyle}
+            />
+
             {filtered.map(zone => (
               <CircleMarker
                 key={zone.id}
