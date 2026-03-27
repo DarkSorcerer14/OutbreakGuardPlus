@@ -75,28 +75,29 @@ def generate_zone_data(zone):
         'ors_sales_spike': round(np.random.uniform(0.5, 8), 1),
         'antibiotic_sales_spike': round(np.random.uniform(0.3, 7), 1),
         'fever_med_sales_spike': round(np.random.uniform(0.5, 7.5), 1),
-        'population_density': zone['population'] / 10,
+        'population_density': int(zone.get('population', 0)) / 10,
         'sanitation_score': round(np.random.uniform(15, 75), 1),
     }
     return data
 
 def predict_zone_risk(zone_data):
     """Use ML model to predict risk for a zone"""
-    if risk_model is None:
+    if risk_model is None or disease_model is None or feature_names is None:
         # Fallback heuristic
         score = 0
-        if zone_data['water_ph'] < 6.5 or zone_data['water_ph'] > 8.5:
+        if float(zone_data.get('water_ph', 7)) < 6.5 or float(zone_data.get('water_ph', 7)) > 8.5:
             score += 2
-        if zone_data['turbidity_ntu'] > 50:
+        if float(zone_data.get('turbidity_ntu', 10)) > 50:
             score += 2
-        if zone_data['rainfall_mm'] > 150:
+        if float(zone_data.get('rainfall_mm', 10)) > 150:
             score += 2
-        if zone_data['ors_sales_spike'] > 5:
+        if float(zone_data.get('ors_sales_spike', 1)) > 5:
             score += 2
         risk = 2 if score >= 5 else (1 if score >= 3 else 0)
-        return risk, 1, max(3, 15 - score * 2)
+        # Always return 4 values for consistency
+        return risk, 1, max(3, int(15 - score * 2)), [0.33, 0.34, 0.33]
 
-    features = np.array([[zone_data[f] for f in feature_names]])
+    features = np.array([[float(zone_data[f]) for f in feature_names]])
     risk_level = int(risk_model.predict(features)[0])
     disease_type = int(disease_model.predict(features)[0])
     risk_proba = risk_model.predict_proba(features)[0]
@@ -322,9 +323,9 @@ def vaccine_chain_status():
                 "zone_id": zone['id'],
                 "state": zone['state'],
                 "risk_level": RISK_LABELS[risk_level],
-                "ors_packets_needed": int(zone['population'] * 0.01 * (risk_level + 1)),
-                "cholera_vaccines_needed": int(zone['population'] * 0.005 * (risk_level + 1)) if risk_level == 2 else 0,
-                "antibiotics_needed": int(zone['population'] * 0.003 * (risk_level + 1)),
+                "ors_packets_needed": int(int(zone.get('population', 0)) * 0.01 * (risk_level + 1)),
+                "cholera_vaccines_needed": int(int(zone.get('population', 0)) * 0.005 * (risk_level + 1)) if risk_level == 2 else 0,
+                "antibiotics_needed": int(int(zone.get('population', 0)) * 0.003 * (risk_level + 1)),
                 "dispatch_priority": "URGENT" if risk_level == 2 else "NORMAL",
                 "estimated_dispatch_date": (datetime.now() + timedelta(days=1 if risk_level == 2 else 3)).strftime("%Y-%m-%d"),
                 "nearest_warehouse": random.choice(["Mumbai Central", "Kolkata Depot", "Delhi Hub", "Patna Store"]),
