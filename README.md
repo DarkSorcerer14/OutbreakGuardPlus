@@ -5,7 +5,7 @@ OutbreakGuard+ is a comprehensive, three-layer AI-driven platform designed to pr
 
 ---
 
-## 🚀 Key Features
+##  Key Features
 
 *   **⚡ Real-time Prediction**: Random Forest ML models predict outbreak risks with 94%+ accuracy.
 *   **🌍 Interactive Risk Heatmap**: Dynamic geographic visualization of high-risk zones using OpenStreetMap.
