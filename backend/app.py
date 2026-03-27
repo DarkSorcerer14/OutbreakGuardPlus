@@ -11,6 +11,7 @@ import os
 import json
 import random
 import requests as http_requests
+import hashlib
 from datetime import datetime, timedelta
 from alerts import alert_manager
 from firebase import firestore_manager
