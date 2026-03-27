@@ -1,0 +1,25 @@
+{
+  "zones": {
+    "z1": {
+      "current": {
+        "risk_level": "High",
+        "risk_score": 2,
+        "timestamp": "2026-03-27T19:21:41.469525"
+      },
+      "history": [
+        {
+          "risk_level": "High",
+          "risk_score": 2,
+          "timestamp": "2026-03-27T19:21:20.052809"
+        },
+        {
+          "risk_level": "High",
+          "risk_score": 2,
+          "timestamp": "2026-03-27T19:21:41.469525"
+        }
+      ]
+    }
+  },
+  "alerts": [],
+  "system_logs": []
+}
