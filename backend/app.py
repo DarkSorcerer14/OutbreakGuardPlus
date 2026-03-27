@@ -121,25 +121,25 @@ def health_check():
 @app.route('/api/dashboard/summary', methods=['GET'])
 def dashboard_summary():
     """Get overall dashboard summary stats"""
-    all_zones = []
-    high_count = 0
-    medium_count = 0
-    low_count = 0
-    total_affected = 0
-    alerts_sent = 0
+    all_zones: list[dict] = []
+    high_count: int = 0
+    medium_count: int = 0
+    low_count: int = 0
+    total_affected: int = 0
+    alerts_sent: int = 0
 
     for zone in ZONES:
         data = generate_zone_data(zone)
         result = predict_zone_risk(data)
-        risk_level = result[0]
+        risk_level = int(result[0])
 
         if risk_level == 2:
             high_count += 1
-            total_affected += zone['population']
+            total_affected += int(zone.get('population', 0))
             alerts_sent += random.randint(500, 2000)
         elif risk_level == 1:
             medium_count += 1
-            total_affected += int(zone['population'] * 0.3)
+            total_affected += int(float(zone.get('population', 0)) * 0.3)
             alerts_sent += random.randint(100, 500)
         else:
             low_count += 1
@@ -366,8 +366,8 @@ def recent_alerts():
             "status": random.choice(["delivered", "delivered", "delivered", "pending", "failed"]),
         })
 
-    alerts.sort(key=lambda x: x['timestamp'], reverse=True)
-    return jsonify({"alerts": alerts[:15]})
+    alerts.sort(key=lambda x: str(x.get('timestamp', '')), reverse=True)
+    return jsonify({"alerts": list(alerts[:15])})
 
 
 @app.route('/api/model/info', methods=['GET'])
