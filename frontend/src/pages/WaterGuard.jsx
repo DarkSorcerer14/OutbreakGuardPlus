@@ -27,7 +27,7 @@ export default function WaterGuard() {
   if (loading) return <div className="loading-spinner"><div className="spinner"></div></div>;
 
   const latest = trends[trends.length - 1] || {};
-  const highZones = zones.filter(z => z.risk_score === 2);
+
 
   const chartOptions = {
     responsive: true, maintainAspectRatio: false,

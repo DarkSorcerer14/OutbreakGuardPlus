@@ -81,7 +81,7 @@ class AlertManager:
     def make_voice_call(self, to_number, script_url_or_text):
         """Make an automated voice call simulation"""
         print("\n" + "="*50)
-        print(f"📞 SIMULATED VOICE CALL")
+        print("📞 SIMULATED VOICE CALL")
         print(f"TO:      {to_number}")
         print(f"SCRIPT:  {script_url_or_text}")
         print("="*50 + "\n")

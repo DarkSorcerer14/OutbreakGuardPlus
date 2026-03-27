@@ -19,14 +19,13 @@ Two models are produced:
 
 import numpy as np
 import pandas as pd
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split, cross_val_score, StratifiedKFold
-from sklearn.metrics import classification_report, accuracy_score, confusion_matrix
+from sklearn.metrics import classification_report, accuracy_score
 from sklearn.preprocessing import MinMaxScaler
 import joblib
 import os
 import json
-import sys
 import warnings
 
 warnings.filterwarnings("ignore")
@@ -410,7 +409,7 @@ def main():
 
     # Keep only the 12 model features (drop helper columns like _potability)
     extra_cols = [c for c in df.columns if c.startswith('_')]
-    df_meta = df[extra_cols].copy() if extra_cols else pd.DataFrame()
+
     df = df[FEATURES].copy()
     df.dropna(inplace=True)
 
@@ -429,13 +428,13 @@ def main():
               else np.random.randint(10, 20))
     )
 
-    print(f"\n📈  Risk distribution:")
+    print("\n📈  Risk distribution:")
     for lvl, name in {0: "Low", 1: "Medium", 2: "High"}.items():
         cnt = (df['risk_level'] == lvl).sum()
         pct = cnt / len(df) * 100
         print(f"   {name:>6s}: {cnt:>6,}  ({pct:.1f}%)")
 
-    print(f"\n🦠  Disease distribution:")
+    print("\n🦠  Disease distribution:")
     for lvl, name in {0: "None", 1: "Cholera", 2: "Typhoid", 3: "Both"}.items():
         cnt = (df['disease_type'] == lvl).sum()
         pct = cnt / len(df) * 100
@@ -554,12 +553,12 @@ def main():
         json.dump(metadata, f, indent=2)
 
     print(f"\n✅  Models saved to {os.path.abspath(MODELS_DIR)}")
-    print(f"    • risk_model.pkl")
-    print(f"    • disease_model.pkl")
-    print(f"    • feature_names.pkl")
-    print(f"    • feature_importance.json")
-    print(f"    • training_metadata.json")
-    print(f"\n🎉  Training complete!")
+    print("    • risk_model.pkl")
+    print("    • disease_model.pkl")
+    print("    • feature_names.pkl")
+    print("    • feature_importance.json")
+    print("    • training_metadata.json")
+    print("\n🎉  Training complete!")
 
 
 if __name__ == "__main__":

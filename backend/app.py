@@ -562,7 +562,7 @@ def simulate_outbreak():
     }
     
     result = predict_zone_risk(data)
-    risk_level, disease_type, days_to_peak = result[0], result[1], result[2]
+    risk_level, disease_type, _ = result[0], result[1], result[2]
     
     # Store in firestore (simulated)
     firestore_manager.update_zone_risk(zone_id, {
