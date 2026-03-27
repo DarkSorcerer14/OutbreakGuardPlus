@@ -14,5 +14,13 @@
     "channel": "SMS",
     "message": "🛡️ OutbreakGuard+ CRITICAL ALERT: High Cholera risk detected in Dharavi, Mumbai. Boil water immediately.",
     "status": "SENT"
+  },
+  {
+    "timestamp": "2026-03-27T21:35:55.757015",
+    "sid": "SIM_753f2199",
+    "to": "+919999999999",
+    "channel": "SMS",
+    "message": "🛡️ OutbreakGuard+ CRITICAL ALERT: High Cholera risk detected in Dharavi, Mumbai. Boil water immediately.",
+    "status": "SENT"
   }
 ]
