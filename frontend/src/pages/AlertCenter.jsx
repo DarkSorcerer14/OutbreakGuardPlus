@@ -82,45 +82,6 @@ export default function AlertCenter() {
         </div>
       </div>
 
-      {/* Channel Stats */}
-      <div className="grid-2 fade-in" style={{ marginBottom: 20 }}>
-        <div className="card">
-          <div className="card-header">
-            <div className="card-title">Alert Channels</div>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-            {Object.entries(typeStats).map(([type, count]) => (
-              <div key={type} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 12px', borderRadius: 'var(--radius-sm)', background: 'rgba(15,23,42,0.4)', border: '1px solid rgba(99,115,171,0.08)' }}>
-                {alertIcon(type)}
-                <div>
-                  <div style={{ fontWeight: 700, fontSize: '1.1rem', fontFamily: 'JetBrains Mono' }}>{count}</div>
-                  <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>{type}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="card">
-          <div className="card-header">
-            <div className="card-title">Accessibility Features</div>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            <div style={{ padding: '10px 14px', borderRadius: 'var(--radius-sm)', background: 'rgba(15,23,42,0.4)', border: '1px solid rgba(99,115,171,0.08)' }}>
-              <div style={{ fontWeight: 600, fontSize: '0.85rem', color: 'var(--text-primary)', marginBottom: 4 }}>📱 SMS Alerts</div>
-              <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>Simple text messages in Hindi, Bengali, Tamil & more. Works on any phone.</div>
-            </div>
-            <div style={{ padding: '10px 14px', borderRadius: 'var(--radius-sm)', background: 'rgba(15,23,42,0.4)', border: '1px solid rgba(99,115,171,0.08)' }}>
-              <div style={{ fontWeight: 600, fontSize: '0.85rem', color: 'var(--text-primary)', marginBottom: 4 }}>📞 Voice Calls</div>
-              <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>Automated voice alerts in local language for illiterate & elderly users.</div>
-            </div>
-            <div style={{ padding: '10px 14px', borderRadius: 'var(--radius-sm)', background: 'rgba(15,23,42,0.4)', border: '1px solid rgba(99,115,171,0.08)' }}>
-              <div style={{ fontWeight: 600, fontSize: '0.85rem', color: 'var(--text-primary)', marginBottom: 4 }}>👩‍⚕️ ASHA Worker Notifications</div>
-              <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>Community health workers receive alerts for door-to-door outreach.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Filter Tabs */}
       <div className="layer-tabs fade-in" style={{ marginBottom: 16 }}>
         {['all', 'SMS', 'Voice Call', 'ASHA Worker', 'Pharmacy Notice'].map(f => (
@@ -130,7 +91,7 @@ export default function AlertCenter() {
         ))}
       </div>
 
-      {/* Alert List */}
+      {/* Alert Log */}
       <div className="card fade-in">
         <div className="alert-list" style={{ maxHeight: 600 }}>
           {filtered.map(a => (

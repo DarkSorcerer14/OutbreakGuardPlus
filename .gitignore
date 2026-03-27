@@ -1,3 +1,36 @@
-backend/.env
+# Python
 __pycache__/
 *.pyc
+*.pyo
+*.egg-info/
+venv/
+.env
+
+# ML models (large binaries)
+backend/models/*.pkl
+
+# Local data
+backend/alerts_log.json
+backend/local_db.json
+ml/data/
+
+# Node
+node_modules/
+dist/
+*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Misc
+push_log.txt

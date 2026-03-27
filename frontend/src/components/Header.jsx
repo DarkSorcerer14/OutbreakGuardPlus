@@ -1,5 +1,6 @@
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { RefreshCw, Zap } from 'lucide-react';
+import { RefreshCw, Zap, Globe } from 'lucide-react';
 import axios from 'axios';
 
 const pageTitles = {
@@ -17,10 +18,39 @@ export default function Header() {
   const location = useLocation();
   const title = pageTitles[location.pathname] || 'Dashboard';
 
+  const getCookieLang = () => {
+    const match = document.cookie.match(/googtrans=\/en\/([a-z]{2})/);
+    return match ? match[1] : 'en';
+  };
+
+  const handleLangChange = (e) => {
+    const lang = e.target.value;
+    // Set cookie for both domain and path to guarantee it writes
+    document.cookie = `googtrans=/en/${lang}; path=/`;
+    document.cookie = `googtrans=/en/${lang}; path=/; domain=${window.location.hostname}`;
+    window.location.reload();
+  };
+
+  // Ask for browser notification permissions initially
+  useEffect(() => {
+    if ('Notification' in window && Notification.permission !== 'granted') {
+      Notification.requestPermission();
+    }
+  }, []);
+
   const handleSimulate = async () => {
     try {
       if (confirm('Simulate a critical outbreak in Dharavi to test alerts?')) {
         await axios.post('http://localhost:5000/api/system/simulate-outbreak', { zone_id: 'z1' });
+        
+        // Trigger native browser notification
+        if ('Notification' in window && Notification.permission === 'granted') {
+          new Notification('CRITICAL: Cholera Alert 🚨', {
+            body: 'OutbreakGuard ML has detected a high-risk outbreak in Dharavi. Dispatching medical aid now.',
+            icon: '/favicon.ico'
+          });
+        }
+        
         alert('Simulation triggered! Check Terminal for alerts.');
         window.location.reload();
       }
@@ -39,12 +69,21 @@ export default function Header() {
         </span>
       </div>
       <div className="header-right">
-        <button 
+        <select 
           className="header-btn" 
-          onClick={handleSimulate}
-          style={{ background: 'var(--accent-red-soft)', color: 'var(--accent-red)', borderColor: 'var(--accent-red)' }}
+          value={getCookieLang()}
+          onChange={handleLangChange}
+          style={{ appearance: 'none', cursor: 'pointer', paddingRight: 30, backgroundImage: 'url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'white\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpolyline points=\'6 9 12 15 18 9\'%3E%3C/polyline%3E%3C/svg%3E")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 8px center', backgroundSize: '12px' }}
         >
-          <Zap size={14} />
+          <option value="en">🌐 English (EN)</option>
+          <option value="hi">🌐 Hindi (HI)</option>
+          <option value="ta">🌐 Tamil (TA)</option>
+        </select>
+        <button 
+          className="header-btn btn-simulate" 
+          onClick={handleSimulate}
+        >
+          <Zap size={14} className="simulate-icon" />
           Simulate Outbreak
         </button>
         <div className="live-indicator">

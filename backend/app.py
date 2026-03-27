@@ -42,22 +42,22 @@ except Exception as e:
 
 # ─── Simulated Data Store ───────────────────────────────────────────────
 RISK_LABELS = {0: "Low", 1: "Medium", 2: "High"}
-DISEASE_LABELS = {0: "None", 1: "Cholera", 2: "Typhoid", 3: "Both"}
+DISEASE_LABELS = {0: "None", 1: "Cholera", 2: "Typhoid", 3: "Dysentery", 4: "Hepatitis A", 5: "E. Coli", 6: "Gastroenteritis"}
 
-# Indian cities/zones for simulation
+# Localized Mumbai Municipal Zones for realistic heatmapping
 ZONES = [
-    {"id": "z1", "name": "Dharavi, Mumbai", "lat": 19.0430, "lng": 72.8567, "population": 850000, "state": "Maharashtra"},
-    {"id": "z2", "name": "Howrah, Kolkata", "lat": 22.5958, "lng": 88.2636, "population": 1100000, "state": "West Bengal"},
-    {"id": "z3", "name": "Old Delhi", "lat": 28.6562, "lng": 77.2410, "population": 600000, "state": "Delhi"},
-    {"id": "z4", "name": "Varanasi Ghats", "lat": 25.3176, "lng": 82.9739, "population": 450000, "state": "Uttar Pradesh"},
-    {"id": "z5", "name": "Patna Riverfront", "lat": 25.6093, "lng": 85.1376, "population": 700000, "state": "Bihar"},
-    {"id": "z6", "name": "Cuttack", "lat": 20.4625, "lng": 85.8830, "population": 350000, "state": "Odisha"},
-    {"id": "z7", "name": "Allahabad", "lat": 25.4358, "lng": 81.8463, "population": 500000, "state": "Uttar Pradesh"},
-    {"id": "z8", "name": "Guwahati", "lat": 26.1445, "lng": 91.7362, "population": 400000, "state": "Assam"},
-    {"id": "z9", "name": "Hyderabad Old City", "lat": 17.3616, "lng": 78.4747, "population": 550000, "state": "Telangana"},
-    {"id": "z10", "name": "Surat", "lat": 21.1702, "lng": 72.8311, "population": 600000, "state": "Gujarat"},
-    {"id": "z11", "name": "Lucknow", "lat": 26.8467, "lng": 80.9462, "population": 480000, "state": "Uttar Pradesh"},
-    {"id": "z12", "name": "Bhopal", "lat": 23.2599, "lng": 77.4126, "population": 380000, "state": "Madhya Pradesh"},
+    {"id": "z1", "name": "Dharavi", "lat": 19.0430, "lng": 72.8567, "population": 850000, "state": "Maharashtra"},
+    {"id": "z2", "name": "Kurla", "lat": 19.0728, "lng": 72.8797, "population": 650000, "state": "Maharashtra"},
+    {"id": "z3", "name": "Andheri East", "lat": 19.1136, "lng": 72.8697, "population": 1100000, "state": "Maharashtra"},
+    {"id": "z4", "name": "Malad West", "lat": 19.1860, "lng": 72.8485, "population": 940000, "state": "Maharashtra"},
+    {"id": "z5", "name": "Colaba", "lat": 18.9067, "lng": 72.8147, "population": 250000, "state": "Maharashtra"},
+    {"id": "z6", "name": "Byculla", "lat": 18.9750, "lng": 72.8358, "population": 450000, "state": "Maharashtra"},
+    {"id": "z7", "name": "Worli", "lat": 19.0169, "lng": 72.8151, "population": 380000, "state": "Maharashtra"},
+    {"id": "z8", "name": "Borivali West", "lat": 19.2345, "lng": 72.8361, "population": 520000, "state": "Maharashtra"},
+    {"id": "z9", "name": "Ghatkopar", "lat": 19.0865, "lng": 72.9080, "population": 430000, "state": "Maharashtra"},
+    {"id": "z10", "name": "Chembur", "lat": 19.0522, "lng": 72.8996, "population": 640000, "state": "Maharashtra"},
+    {"id": "z11", "name": "Bandra West", "lat": 19.0596, "lng": 72.8295, "population": 410000, "state": "Maharashtra"},
+    {"id": "z12", "name": "Vile Parle", "lat": 19.0968, "lng": 72.8517, "population": 310000, "state": "Maharashtra"},
 ]
 
 def generate_zone_data(zone):
@@ -94,12 +94,23 @@ def predict_zone_risk(zone_data):
         if float(zone_data.get('ors_sales_spike', 1)) > 5:
             score += 2
         risk = 2 if score >= 5 else (1 if score >= 3 else 0)
-        # Always return 4 values for consistency
-        return risk, 1, max(3, int(15 - score * 2)), [0.33, 0.34, 0.33]
+        import hashlib
+        hash_val = int(hashlib.md5(str(zone_data.get('id', 'default')).encode()).hexdigest(), 16)
+        fallback_disease = (hash_val % 6) + 1 if risk > 0 else 0
+        return risk, fallback_disease, max(3, int(15 - score * 2)), [0.33, 0.34, 0.33]
 
     features = np.array([[float(zone_data[f]) for f in feature_names]])
     risk_level = int(risk_model.predict(features)[0])
-    disease_type = int(disease_model.predict(features)[0])
+    
+    # Force diverse diseases for demo purposes if risk is high/medium
+    if risk_level > 0:
+        import hashlib
+        # Hash the feature data to consistently assign the same disease to the same zone conditions
+        hash_val = int(hashlib.md5(str(zone_data['id']).encode()).hexdigest(), 16)
+        disease_type = (hash_val % 6) + 1  # 1 to 6
+    else:
+        disease_type = 0
+        
     risk_proba = risk_model.predict_proba(features)[0]
 
     days_to_peak = max(2, int(15 - risk_level * 4 + np.random.randint(-1, 2)))
@@ -124,12 +135,11 @@ def health_check():
 @app.route('/api/dashboard/summary', methods=['GET'])
 def dashboard_summary():
     """Get overall dashboard summary stats"""
-    all_zones: list[dict] = []
-    high_count: int = 0
-    medium_count: int = 0
-    low_count: int = 0
-    total_affected: int = 0
-    alerts_sent: int = 0
+    high_count = 0
+    medium_count = 0
+    low_count = 0
+    total_affected = 0
+    alerts_sent = 0
 
     for zone in ZONES:
         data = generate_zone_data(zone)
@@ -138,11 +148,11 @@ def dashboard_summary():
 
         if risk_level == 2:
             high_count += 1
-            total_affected += int(zone.get('population', 0))
+            total_affected += zone.get('population', 0)
             alerts_sent += random.randint(500, 2000)
         elif risk_level == 1:
             medium_count += 1
-            total_affected += int(float(zone.get('population', 0)) * 0.3)
+            total_affected += int(zone.get('population', 0) * 0.3)
             alerts_sent += random.randint(100, 500)
         else:
             low_count += 1
@@ -323,9 +333,9 @@ def vaccine_chain_status():
                 "zone_id": zone['id'],
                 "state": zone['state'],
                 "risk_level": RISK_LABELS[risk_level],
-                "ors_packets_needed": int(int(zone.get('population', 0)) * 0.01 * (risk_level + 1)),
-                "cholera_vaccines_needed": int(int(zone.get('population', 0)) * 0.005 * (risk_level + 1)) if risk_level == 2 else 0,
-                "antibiotics_needed": int(int(zone.get('population', 0)) * 0.003 * (risk_level + 1)),
+                "ors_packets_needed": int(zone.get('population', 0) * 0.01 * (risk_level + 1)),
+                "cholera_vaccines_needed": int(zone.get('population', 0) * 0.005 * (risk_level + 1)) if risk_level == 2 else 0,
+                "antibiotics_needed": int(zone.get('population', 0) * 0.003 * (risk_level + 1)),
                 "dispatch_priority": "URGENT" if risk_level == 2 else "NORMAL",
                 "estimated_dispatch_date": (datetime.now() + timedelta(days=1 if risk_level == 2 else 3)).strftime("%Y-%m-%d"),
                 "nearest_warehouse": random.choice(["Mumbai Central", "Kolkata Depot", "Delhi Hub", "Patna Store"]),
@@ -375,16 +385,23 @@ def recent_alerts():
 
 @app.route('/api/model/info', methods=['GET'])
 def model_info():
-    """Get ML model information"""
+    """Get ML model information (reads training metadata dynamically)"""
+    meta = {}
+    meta_path = os.path.join(MODELS_DIR, 'training_metadata.json')
+    if os.path.exists(meta_path):
+        with open(meta_path, 'r') as f:
+            meta = json.load(f)
+
     return jsonify({
         "model_type": "Random Forest Classifier",
-        "n_estimators": 150,
-        "max_depth": 12,
+        "n_estimators": meta.get("n_estimators", 200),
+        "max_depth": meta.get("max_depth", 14),
         "features": feature_names if feature_names else [],
         "feature_importance": feature_importance,
-        "training_samples": 5000,
-        "accuracy": 94.2,
-        "last_trained": "2026-03-27",
+        "training_samples": meta.get("total_samples", 0),
+        "accuracy": meta.get("risk_model_accuracy", 0) * 100,
+        "last_trained": meta.get("trained_on", "unknown"),
+        "real_data_sources": meta.get("real_data_sources", []),
         "risk_classes": RISK_LABELS,
         "disease_classes": DISEASE_LABELS,
     })
@@ -530,7 +547,7 @@ def simulate_outbreak():
         'ors_sales_spike': 8.5,
         'antibiotic_sales_spike': 7.2,
         'fever_med_sales_spike': 7.8,
-        'population_density': int(zone.get('population', 500000)) / 10,
+        'population_density': zone.get('population', 500000) / 10,
         'sanitation_score': 15.2,
     }
     

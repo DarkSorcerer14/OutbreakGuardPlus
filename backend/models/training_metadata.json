@@ -1,0 +1,35 @@
+{
+  "trained_on": "2026-03-27T22:13:28.980891",
+  "total_samples": 32785,
+  "real_data_sources": [
+    {
+      "name": "Kaggle Water Potability",
+      "url": "https://www.kaggle.com/datasets/adityakadiwal/water-potability",
+      "rows": 3276
+    },
+    {
+      "name": "HuggingFace Cholera & Waterborne Disease Outbreaks",
+      "url": "https://huggingface.co/datasets/electricsheepafrica/cholera-waterborne-outbreaks",
+      "rows": 30000
+    }
+  ],
+  "risk_model_accuracy": 0.9308,
+  "risk_model_cv_mean": 0.9295,
+  "disease_model_accuracy": 0.7302,
+  "n_estimators": 200,
+  "max_depth": 14,
+  "features": [
+    "rainfall_mm",
+    "flood_proximity_km",
+    "water_ph",
+    "turbidity_ntu",
+    "temperature_c",
+    "humidity_pct",
+    "historical_cases",
+    "ors_sales_spike",
+    "antibiotic_sales_spike",
+    "fever_med_sales_spike",
+    "population_density",
+    "sanitation_score"
+  ]
+}

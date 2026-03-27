@@ -9,13 +9,11 @@ const api = axios.create({
 });
 
 // Use mock data if backend is not available
-let useMock = false;
 
 api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.code === 'ERR_NETWORK' || error.code === 'ECONNREFUSED') {
-      useMock = true;
       console.warn('Backend unavailable, using mock data');
     }
     return Promise.reject(error);

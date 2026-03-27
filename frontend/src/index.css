@@ -2,61 +2,61 @@
    OutbreakGuard+ Design System — Premium Dark Theme
    ═══════════════════════════════════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 :root {
-  /* ─── Core Palette ─────────────────────────────────────────────────── */
-  --bg-primary: #0a0e1a;
-  --bg-secondary: #111827;
-  --bg-card: #1a1f35;
-  --bg-card-hover: #222845;
-  --bg-glass: rgba(26, 31, 53, 0.75);
-  --bg-input: #151a2e;
+  /* ─── Ultra-Premium Deep Dark Palette ───────────────────────────────── */
+  --bg-primary: #000000;
+  --bg-secondary: #0A0A0A;
+  --bg-card: rgba(18, 18, 18, 0.6);
+  --bg-card-hover: rgba(30, 30, 30, 0.8);
+  --bg-glass: rgba(10, 10, 10, 0.7);
+  --bg-input: rgba(26, 26, 26, 0.8);
 
-  --border: rgba(99, 115, 171, 0.15);
-  --border-hover: rgba(99, 115, 171, 0.3);
-  --border-active: rgba(59, 130, 246, 0.5);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.15);
+  --border-active: rgba(0, 255, 204, 0.8);
 
-  --text-primary: #f0f4ff;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --text-dim: #475569;
+  --text-primary: #EDEDED;
+  --text-secondary: #A1A1AA;
+  --text-muted: #71717A;
+  --text-dim: #52525B;
 
-  /* ─── Accent Colors ────────────────────────────────────────────────── */
-  --accent-blue: #3b82f6;
+  /* ─── Cyber-Neon Accents ───────────────────────────────────────────── */
+  --accent-blue: #3B82F6;
   --accent-blue-soft: rgba(59, 130, 246, 0.15);
-  --accent-cyan: #06b6d4;
-  --accent-cyan-soft: rgba(6, 182, 212, 0.15);
-  --accent-green: #10b981;
-  --accent-green-soft: rgba(16, 185, 129, 0.15);
-  --accent-yellow: #f59e0b;
-  --accent-yellow-soft: rgba(245, 158, 11, 0.15);
-  --accent-orange: #f97316;
-  --accent-orange-soft: rgba(249, 115, 22, 0.15);
-  --accent-red: #ef4444;
-  --accent-red-soft: rgba(239, 68, 68, 0.15);
-  --accent-purple: #8b5cf6;
-  --accent-purple-soft: rgba(139, 92, 246, 0.15);
+  --accent-cyan: #00E5FF;
+  --accent-cyan-soft: rgba(0, 229, 255, 0.1);
+  --accent-green: #10B981;
+  --accent-green-soft: rgba(16, 185, 129, 0.1);
+  --accent-yellow: #FACC15;
+  --accent-yellow-soft: rgba(250, 204, 21, 0.1);
+  --accent-orange: #F97316;
+  --accent-orange-soft: rgba(249, 115, 22, 0.1);
+  --accent-red: #FF3366;
+  --accent-red-soft: rgba(255, 51, 102, 0.15);
+  --accent-purple: #B026FF;
+  --accent-purple-soft: rgba(176, 38, 255, 0.15);
 
   /* ─── Risk Colors ──────────────────────────────────────────────────── */
-  --risk-high: #ef4444;
-  --risk-high-bg: rgba(239, 68, 68, 0.12);
-  --risk-high-glow: rgba(239, 68, 68, 0.3);
-  --risk-medium: #f59e0b;
-  --risk-medium-bg: rgba(245, 158, 11, 0.12);
-  --risk-medium-glow: rgba(245, 158, 11, 0.3);
-  --risk-low: #10b981;
-  --risk-low-bg: rgba(16, 185, 129, 0.12);
+  --risk-high: #FF3366;
+  --risk-high-bg: rgba(255, 51, 102, 0.1);
+  --risk-high-glow: rgba(255, 51, 102, 0.4);
+  --risk-medium: #FACC15;
+  --risk-medium-bg: rgba(250, 204, 21, 0.1);
+  --risk-medium-glow: rgba(250, 204, 21, 0.3);
+  --risk-low: #10B981;
+  --risk-low-bg: rgba(16, 185, 129, 0.1);
   --risk-low-glow: rgba(16, 185, 129, 0.3);
 
-  /* ─── Gradients ────────────────────────────────────────────────────── */
-  --gradient-primary: linear-gradient(135deg, #3b82f6, #8b5cf6);
-  --gradient-danger: linear-gradient(135deg, #ef4444, #f97316);
-  --gradient-success: linear-gradient(135deg, #10b981, #06b6d4);
-  --gradient-warning: linear-gradient(135deg, #f59e0b, #f97316);
-  --gradient-dark: linear-gradient(145deg, #0a0e1a 0%, #111827 50%, #0f172a 100%);
-  --gradient-card: linear-gradient(145deg, rgba(26, 31, 53, 0.9), rgba(15, 23, 42, 0.9));
-  --gradient-glow: radial-gradient(ellipse at 50% 0%, rgba(59, 130, 246, 0.08) 0%, transparent 60%);
+  /* ─── Elegant Gradients ────────────────────────────────────────────── */
+  --gradient-primary: linear-gradient(135deg, #00E5FF, #3B82F6);
+  --gradient-danger: linear-gradient(135deg, #FF3366, #F97316);
+  --gradient-success: linear-gradient(135deg, #10B981, #00E5FF);
+  --gradient-warning: linear-gradient(135deg, #FACC15, #F97316);
+  --gradient-dark: linear-gradient(160deg, #000000 0%, #0A0A0A 100%);
+  --gradient-card: linear-gradient(145deg, rgba(20, 20, 20, 0.7), rgba(10, 10, 10, 0.3));
+  --gradient-glow: radial-gradient(ellipse at 50% -20%, rgba(0, 229, 255, 0.15) 0%, rgba(0,0,0,0) 70%);
 
   /* ─── Sizing & Spacing ─────────────────────────────────────────────── */
   --sidebar-width: 260px;
@@ -87,6 +87,19 @@
   box-sizing: border-box;
 }
 
+/* ─── Nuke Google Translate Visuals ───────────────────────────────────── */
+/* Completely hides the ugly blue frame at the top */
+iframe.goog-te-banner-frame { display: none !important; }
+.goog-te-banner-frame.skiptranslate { display: none !important; }
+/* Stops Google from pushing the app down 40px */
+body { top: 0px !important; position: static !important; }
+/* Hides tooltip popups on hover */
+#goog-gt-tt, .goog-te-balloon-frame { display: none !important; }
+/* Removes ugly highlight when hovering over translated text */
+.goog-text-highlight { background-color: transparent !important; box-shadow: none !important; }
+/* Keep our custom dropdown hidden but readable to the script */
+.hidden-translate { width: 0; height: 0; overflow: hidden; opacity: 0; position: absolute; }
+
 html {
   font-size: 14px;
   scroll-behavior: smooth;
@@ -95,7 +108,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
@@ -144,11 +157,25 @@ a:hover { color: var(--accent-cyan); }
 .page-content::before {
   content: '';
   position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.page-content::after {
+  content: '';
+  position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  height: 300px;
+  height: 500px;
   background: var(--gradient-glow);
   pointer-events: none;
   z-index: 0;
@@ -183,10 +210,10 @@ a:hover { color: var(--accent-cyan); }
 }
 
 .sidebar-logo h1 {
-  font-size: 1.3rem;
+  font-size: 1.35rem;
   font-weight: 800;
   letter-spacing: -0.5px;
-  background: var(--gradient-primary);
+  background: linear-gradient(to right, #ffffff, #8b9bb4);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -387,6 +414,33 @@ a:hover { color: var(--accent-cyan); }
   border-color: #2563eb;
 }
 
+/* ─── Animated Simulate Button ─── */
+.btn-simulate {
+  background: rgba(244, 63, 94, 0.15);
+  color: #f43f5e;
+  border: 1px solid rgba(244, 63, 94, 0.6);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(244, 63, 94, 0.2);
+  transition: all 0.3s ease;
+}
+
+.btn-simulate:hover {
+  background: rgba(244, 63, 94, 0.25);
+  box-shadow: 0 0 25px rgba(244, 63, 94, 0.5);
+  border-color: #f43f5e;
+  color: #fff;
+}
+
+.simulate-icon {
+  animation: static-zap 1.5s infinite;
+}
+
+@keyframes static-zap {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(244, 63, 94, 0.8)); }
+  50% { transform: scale(1.2); filter: drop-shadow(0 0 8px rgba(244, 63, 94, 1)); }
+}
+
 .live-indicator {
   display: flex;
   align-items: center;
@@ -421,14 +475,16 @@ a:hover { color: var(--accent-cyan); }
   background: var(--gradient-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 20px;
-  backdrop-filter: blur(10px);
+  padding: 24px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.3);
   transition: all var(--transition-base);
 }
 
 .card:hover {
   border-color: var(--border-hover);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 8px 32px -4px rgba(10, 20, 40, 0.5), inset 0 0 0 1px rgba(255,255,255,0.02);
 }
 
 .card-header {
@@ -479,9 +535,12 @@ a:hover { color: var(--accent-cyan); }
   background: var(--gradient-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 20px;
+  padding: 24px;
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.3);
   transition: all var(--transition-base);
 }
 
@@ -490,22 +549,22 @@ a:hover { color: var(--accent-cyan); }
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  height: 3px;
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  bottom: 0;
+  width: 3px;
+  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
 }
 
-.stat-card.blue::before { background: var(--gradient-primary); }
-.stat-card.red::before { background: var(--gradient-danger); }
-.stat-card.green::before { background: var(--gradient-success); }
-.stat-card.yellow::before { background: var(--gradient-warning); }
-.stat-card.purple::before { background: linear-gradient(135deg, #8b5cf6, #a78bfa); }
-.stat-card.cyan::before { background: linear-gradient(135deg, #06b6d4, #22d3ee); }
+.stat-card.blue::before { background: var(--gradient-primary); box-shadow: 0 0 15px var(--accent-blue); }
+.stat-card.red::before { background: var(--gradient-danger); box-shadow: 0 0 15px var(--accent-red); }
+.stat-card.green::before { background: var(--gradient-success); box-shadow: 0 0 15px var(--accent-green); }
+.stat-card.yellow::before { background: var(--gradient-warning); box-shadow: 0 0 15px var(--accent-yellow); }
+.stat-card.purple::before { background: linear-gradient(135deg, #a855f7, #c084fc); box-shadow: 0 0 15px var(--accent-purple); }
+.stat-card.cyan::before { background: linear-gradient(135deg, #22d3ee, #67e8f9); box-shadow: 0 0 15px var(--accent-cyan); }
 
 .stat-card:hover {
   border-color: var(--border-hover);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255,255,255,0.02);
 }
 
 .stat-card .stat-icon {
