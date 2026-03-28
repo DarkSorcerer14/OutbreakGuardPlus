@@ -8,7 +8,7 @@ export default function AccessibilityPage() {
       title: 'SMS Alerts',
       description: 'Simple text messages in local languages sent to registered phone numbers. Works on any basic mobile phone — no smartphone or internet needed.',
       stats: [
-        { label: 'Languages', value: '3' },
+        { label: 'Languages', value: '3+' },
         { label: 'Avg Delivery', value: '98.2%' },
         { label: 'Reach Time', value: '<30 sec' },
       ],
@@ -21,7 +21,7 @@ export default function AccessibilityPage() {
       title: 'Automated Voice Calls',
       description: 'Pre-recorded voice alerts in regional languages for illiterate and elderly users. The system calls registered numbers and plays a clear warning message.',
       stats: [
-        { label: 'Languages', value: '6+' },
+        { label: 'Languages', value: '3+' },
         { label: 'Answer Rate', value: '85%' },
         { label: 'Call Length', value: '~45 sec' },
       ],
