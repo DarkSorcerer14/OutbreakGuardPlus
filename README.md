@@ -53,7 +53,7 @@ The system's modular architecture is divided into specialized intelligence layer
 
 ---
 
-**Link: https://outbreakguard-plus.vercel.app/**
+**Link: https://outbreak-guard-plus.vercel.app/**
 
 ---
 
