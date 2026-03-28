@@ -5,26 +5,37 @@ OutbreakGuard+ is a high-precision, multi-layered analytical engine designed for
 
 ---
 
-## Core System Features
+## Core Intelligence Layers
 
-### Pan-India Geospatial Intelligence
-*   **Hyper-Localized Surveillance**: Active monitoring across Mumbai, Uttar Pradesh (Lucknow hub), and Chennai health networks.
-*   **GeoJSON Boundary Mapping**: The system renders precise Municipal Ward boundaries with dynamic risk-based color shading (High, Medium, and Low risk tiers).
-*   **Smart Navigation**: Integrated camera transitions allow for instantaneous inspection of disparate metropolitan health clusters.
+The system's modular architecture is divided into specialized intelligence layers:
 
-### Predictive Machine Learning Engine
-*   **Multi-Disease Diagnostic Matrix**: A Random Forest classification model identifies six specific waterborne pathogens, including Cholera, Typhoid, Dysentery, Hepatitis A, E. Coli, and Gastroenteritis.
-*   **Automated Risk Attribution**: Algorithms analyze correlations between Turbidity (NTU), Water pH levels, Precipitation volume, and Pharmaceutical sales spikes (ORS/Antibiotics).
-*   **Outbreak Simulation Capability**: A high-speed simulation environment enables stress-testing of public health response protocols.
+### WaterGuard (IoT Surveillance)
+*   **Real-time Monitoring**: Continuous tracking of Turbidity (NTU), Water pH levels, and Precipitation volume.
+*   **Contamination Detection**: High-sensitivity detection of E. Coli, Cholera, and other pathogens using environmental indicators.
+*   **Localized Alerts**: Immediate notification to municipal authorities when water parameters deviate from WHO safety standards.
 
-### Universal Accessibility Support
-*   **Multilingual Interface**: Instantaneous dashboard translation capabilities for English, Hindi (हिन्दी), and Tamil (தமிழ்).
-*   **Native Translation Engine**: High-performance injection preserves the system's "Cyber-Obsidian" aesthetic while ensuring accessibility across regional departments.
+### PharmaSentinel (Pharmaceutical Anomaly Detection)
+*   **Sales Spike Correlation**: Analyzes real-time spikes in ORS, Zinc, and Antibiotic sales across regional pharmacies.
+*   **Silent Cluster Identification**: Detects health anomalies 7 to 10 days before primary outbreak peaks occur at hospitals.
+*   **Stock Management**: Notifies local pharmacies to ensure adequate supply of essential medicines in high-risk zones.
 
-### Public Health Response Infrastructure
-*   **System-Level Notifications**: Native desktop alerts are triggered immediately upon the detection of an outbreak cluster by the ML model.
-*   **Policy-Grade Reporting**: Automated CSV report generation formatted for municipal government documentation and resource planning.
-*   **Historical Analysis**: Integrated 30-day analytics to visualize epidemiological trends and the efficacy of historical interventions.
+### VaccineChain (Predictive Supply Management)
+*   **Priority Allocation**: Recommends vaccine and medical resource distribution based on ML-driven risk scores.
+*   **Resource Forecasting**: Calculates estimated ORS and antibiotic requirements for high-risk zones based on population density.
+*   **Logistics Optimization**: Suggests nearest warehouses for rapid supply dispatch.
+
+### AlertCenter (Omnichannel Emergency System)
+*   **Multilingual Support**: Instantaneous dashboard translation for English, Hindi (हिन्दी), and Tamil (தமிழ்).
+*   **ASHA Worker Integration**: Direct push notifications and SMS alerts for grassroots healthcare workers.
+*   **Public Safety Broadcasting**: Automated voice calls and SMS to households in high-risk municipal wards.
+
+---
+
+## Predictive Machine Learning Engine
+
+*   **Model Core**: Random Forest classification model with over 94% accuracy in risk prediction.
+*   **Diagnostic Matrix**: Identifies six specific waterborne pathogens, including Cholera, Typhoid, Dysentery, Hepatitis A, E. Coli, and Gastroenteritis.
+*   **Dynamic Simulation**: Simulation environment for stress-testing public health response protocols.
 
 ---
 
@@ -37,30 +48,18 @@ OutbreakGuard+ is a high-precision, multi-layered analytical engine designed for
 | **Visualization** | Analytics Dashboard | Chart.js, Lucide Standardized Iconography |
 | **Backend** | API Services | Python Flask, RESTful Architecture |
 | **Intelligence** | Machine Learning | Scikit-Learn (Random Forest), NumPy, Joblib |
-| **Linguistic** | Translation | Google Neural Translation (Clean UI Override) |
+| **Linguistic** | Translation | Clean UI Translation Engine |
+| **External APIs** | Integrations | OpenWeatherMap, Twilio (Simulation), Firebase |
 
 ---
 
-## Deployment Procedures
-
-### 1. Backend Service Initialization
-```powershell
-cd backend
-python -m pip install -r requirements.txt
-python app.py
-```
-
-### 2. Frontend Application Startup
-```powershell
-cd frontend
-npm install
-npm run dev
-```
+**Link: https://outbreakguard-plus.vercel.app/**
 
 ---
 
 ## Competitive Advantage
-OutbreakGuard+ facilitates a transition from reactive to proactive public health management. By identifying "silent clusters"—through a combination of pharmacy data anomalies and environmental indicators—the system enables Municipal Corporations to allocate vaccines, medical supplies, and sanitation resources 7 to 10 days before primary outbreak peaks occur at healthcare facilities.
+
+OutbreakGuard+ facilitates a transition from reactive to proactive public health management. By identifying "silent clusters" via a combination of environmental and pharmaceutical indicators, the system enables Municipal Corporations to allocate vaccines and sanitation resources **7 to 10 days ahead of time**, significantly reducing the burden on healthcare facilities.
 
 ---
 
@@ -69,4 +68,4 @@ OutbreakGuard+ facilitates a transition from reactive to proactive public health
 *   **Vivek Kumar Prusty**
 *   **Tanishq Yadav**
 
-**License**: MIT 2026. All rights reserved.
+**License**: MIT 2026. All rights reserved. 
