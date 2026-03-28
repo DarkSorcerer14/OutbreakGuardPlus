@@ -325,6 +325,32 @@ def pharma_trends():
     return jsonify({"trends": trends, "period": f"Last {days} days"})
 
 
+@app.route('/api/pharmasentinel/realtime', methods=['GET'])
+def pharma_realtime_feed():
+    """Get a live stream of incoming reports for the Digital Data Bridge"""
+    wards = ["Kurla", "Dharavi", "Varanasi Ghats", "Andheri East", "Howrah", "T. Nagar", "Old Delhi", "Worli"]
+    pharmacists = ["V. Gupta", "M. Iyer", "S. Reddy", "B. Chatterjee", "D. Singh", "A. Khan", "R. Sharma", "S. Patil"]
+    meds = ["ORS", "Zinc Tablets", "Ciprofloxacin", "Paracetamol", "Anti-Diarrheal packs"]
+    
+    reports = []
+    # Generate 10 recent historical reports
+    for i in range(10):
+        report_time = datetime.now() - timedelta(minutes=random.randint(1, 120))
+        reports.append({
+            "id": f"rp_{100+i}",
+            "ward": random.choice(wards),
+            "pharmacist": random.choice(pharmacists),
+            "message": f"High demand for {random.choice(meds)} detected.",
+            "type": random.choice(["WhatsApp", "SMS", "API"]),
+            "timestamp": report_time.isoformat(),
+            "time": report_time.strftime("%I:%M %p"),
+            "status": "Verified"
+        })
+    
+    reports.sort(key=lambda x: x['timestamp'], reverse=True)
+    return jsonify({"reports": reports})
+
+
 @app.route('/api/vaccinechain/status', methods=['GET'])
 def vaccine_chain_status():
     """Get supply chain status and dispatch recommendations"""
