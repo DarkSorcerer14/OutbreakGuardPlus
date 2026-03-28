@@ -137,6 +137,19 @@ export const fetchPharmaTrends = async () => {
   }
 };
 
+export const fetchPharmaRealtime = async () => {
+  try {
+    const res = await api.get('/pharmasentinel/realtime');
+    return res.data.reports;
+  } catch {
+    return [
+      { id: 1, ward: "Dharavi", pharmacist: "A. Khan", message: "ORS demand spiked 4x in last 3h.", type: "WhatsApp", time: "12:45 PM", status: "Verified" },
+      { id: 2, ward: "Old Delhi", pharmacist: "R. Sharma", message: "Multiple requests for pediatric antibiotics.", type: "SMS", time: "12:52 PM", status: "Verified" },
+      { id: 3, ward: "Worli", pharmacist: "S. Patil", message: "Running low on Fever meds.", type: "System", time: "01:05 PM", status: "Pending" },
+    ];
+  }
+};
+
 export const fetchVaccineChain = async () => {
   try {
     const res = await api.get('/vaccinechain/status');
