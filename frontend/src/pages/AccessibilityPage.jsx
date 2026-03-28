@@ -75,7 +75,7 @@ export default function AccessibilityPage() {
         </div>
         <div className="stat-card purple">
           <div className="stat-icon"><Globe size={20} /></div>
-          <div className="stat-value">6+</div>
+          <div className="stat-value">3+</div>
           <div className="stat-label">Languages Supported</div>
         </div>
         <div className="stat-card blue">
