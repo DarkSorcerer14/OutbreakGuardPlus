@@ -8,7 +8,7 @@ export default function AccessibilityPage() {
       title: 'SMS Alerts',
       description: 'Simple text messages in local languages sent to registered phone numbers. Works on any basic mobile phone — no smartphone or internet needed.',
       stats: [
-        { label: 'Languages', value: '6+' },
+        { label: 'Languages', value: '3' },
         { label: 'Avg Delivery', value: '98.2%' },
         { label: 'Reach Time', value: '<30 sec' },
       ],
