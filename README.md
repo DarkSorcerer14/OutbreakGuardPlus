@@ -1,71 +1,70 @@
 # OutbreakGuard+
-## Advanced AI-Powered Waterborne Disease Surveillance and National Response System
 
-OutbreakGuard+ is a high-precision, multi-layered analytical engine designed for the early detection, real-time monitoring, and rapid mitigation of waterborne health crises. By integrating IoT water quality metrics, pharmaceutical sales anomalies, and geospatial intelligence, the system provides health authorities with a unified command center to identify and neutralize outbreak clusters before they escalate into epidemics.
+Advanced AI-Powered Waterborne Disease Surveillance and National Response System
+
+OutbreakGuard+ is a comprehensive analytical platform designed for early detection, real-time monitoring, and mitigation of waterborne disease outbreaks. The system integrates environmental sensor data, pharmaceutical sales trends, and geospatial intelligence to provide public health authorities with actionable insights for cluster identification and response management.
 
 ---
 
-## Core Intelligence Layers
+## Architecture Overview
 
-The system's modular architecture is divided into specialized intelligence layers:
+The system is structured around four specialized modules:
 
-### WaterGuard (IoT Surveillance)
-*   **Real-time Monitoring**: Continuous tracking of Turbidity (NTU), Water pH levels, and Precipitation volume.
-*   **Contamination Detection**: High-sensitivity detection of E. Coli, Cholera, and other pathogens using environmental indicators.
-*   **Localized Alerts**: Immediate notification to municipal authorities when water parameters deviate from WHO safety standards.
-
+### WaterGuard (Environmental Health Monitoring)
+- **Continuous Monitoring**: Tracking of Turbidity (NTU), pH levels, and precipitation metrics.
+- **Pathogen Exposure Analysis**: Assessment of risk indicators for environmental pathogens including E. Coli and Cholera.
+- **Automated Alerts**: Real-time notification to municipal health departments based on WHO safety benchmarks.
 ### PharmaSentinel (Pharmaceutical Anomaly Detection)
-*   **Sales Spike Correlation**: Analyzes real-time spikes in ORS, Zinc, and Antibiotic sales across regional pharmacies.
-*   **Silent Cluster Identification**: Detects health anomalies 7 to 10 days before primary outbreak peaks occur at hospitals.
-*   **Stock Management**: Notifies local pharmacies to ensure adequate supply of essential medicines in high-risk zones.
+- **Sales Spike Correlation**: Analysis of rapid increases in essential medicine sales (ORS, Zinc, Antibiotics) at regional pharmacies.
+- **Early Cluster Identification**: Potential identification of health anomalies 7 to 10 days prior to hospital census peaks.
+- **Supply Chain Management**: Notification services for local pharmacies to maintain essential stock in high-risk zones.
 
 ### VaccineChain (Predictive Supply Management)
-*   **Priority Allocation**: Recommends vaccine and medical resource distribution based on ML-driven risk scores.
-*   **Resource Forecasting**: Calculates estimated ORS and antibiotic requirements for high-risk zones based on population density.
-*   **Logistics Optimization**: Suggests nearest warehouses for rapid supply dispatch.
+- **Resource Allocation**: Recommends medical resource distribution based on machine learning risk scores.
+- **Demand Forecasting**: Projecting ORS and antibiotic requirements by area population density.
+- **Logistics Optimization**: Identifying optimal warehouse locations for expedited supply dispatch.
 
-### AlertCenter (Omnichannel Emergency System)
-*   **Multilingual Support**: Instantaneous dashboard translation for English, Hindi (हिन्दी), and Tamil (தமிழ்).
-*   **ASHA Worker Integration**: Direct push notifications and SMS alerts for grassroots healthcare workers.
-*   **Public Safety Broadcasting**: Automated voice calls and SMS to households in high-risk municipal wards.
-
----
-
-## Predictive Machine Learning Engine
-
-*   **Model Core**: Random Forest classification model with over 94% accuracy in risk prediction.
-*   **Diagnostic Matrix**: Identifies six specific waterborne pathogens, including Cholera, Typhoid, Dysentery, Hepatitis A, E. Coli, and Gastroenteritis.
-*   **Dynamic Simulation**: Simulation environment for stress-testing public health response protocols.
+### AlertCenter (Multichannel Communication)
+- **Multilingual Support**: Interface support for English, Hindi (हिन्दी), and Tamil (தமிழ்).
+- **Public Health Integration**: Automated SMS and voice alerts for healthcare workers and at-risk households.
 
 ---
 
-## Technical Architecture
+## Machine Learning Engine
 
-| Layer | Component | Specification |
+- **Model Architecture**: Random Forest classification model optimized for high-precision risk prediction.
+- **Diagnostic Capabilities**: Capacity to identify indicators for six major waterborne pathogens: Cholera, Typhoid, Dysentery, Hepatitis A, E. Coli, and Gastroenteritis.
+- **Analytical Simulation**: Environment for testing public health protocols and response scenarios.
+
+---
+
+## Technical Stack
+
+| Category | Component | Specification |
 | :--- | :--- | :--- |
-| **Frontend** | Application Framework | React 18, Vite |
-| **Geospatial** | Mapping Engine | Leaflet.js, GeoJSON Polygon Integration |
-| **Visualization** | Analytics Dashboard | Chart.js, Lucide Standardized Iconography |
-| **Backend** | API Services | Python Flask, RESTful Architecture |
-| **Intelligence** | Machine Learning | Scikit-Learn (Random Forest), NumPy, Joblib |
-| **Linguistic** | Translation | Clean UI Translation Engine |
-| **External APIs** | Integrations | OpenWeatherMap, Twilio (Simulation), Firebase |
+| **Frontend** | Framework | React 18 / Vite |
+| **Backend** | API Services | Python Flask |
+| **Machine Learning** | Libraries | Scikit-Learn (Random Forest), NumPy, Joblib |
+| **Geospatial** | Engine | Leaflet.js / GeoJSON |
+| **Visualization** | Analytics | Chart.js |
+| **Integrations** | External APIs | OpenWeatherMap, Twilio, Firebase |
 
 ---
 
-**Link: https://outbreak-guard-plus.vercel.app/**
+## Deployment
+Official URL: [https://outbreak-guard-plus.vercel.app/](https://outbreak-guard-plus.vercel.app/)
 
 ---
 
-## Competitive Advantage
+## Contributors
 
-OutbreakGuard+ facilitates a transition from reactive to proactive public health management. By identifying "silent clusters" via a combination of environmental and pharmaceutical indicators, the system enables Municipal Corporations to allocate vaccines and sanitation resources **7 to 10 days ahead of time**, significantly reducing the burden on healthcare facilities.
+**Development Team**:
+- Ayush Aryan
+- Vivek Kumar Prusty
+- Tanishq Yadav
 
 ---
 
-## Project Development Team
-*   **Ayush Aryan**
-*   **Vivek Kumar Prusty**
-*   **Tanishq Yadav**
-
-**License**: MIT 2026. All rights reserved. 
+## License
+Distributed under the MIT License.
+Copyright © 2026. All rights reserved.
