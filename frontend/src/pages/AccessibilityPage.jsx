@@ -1,4 +1,4 @@
-import { MessageSquare, Phone, Users, Store, Heart, Globe, Shield, Smartphone } from 'lucide-react';
+import { MessageSquare, Phone, Users, Store, Heart, Globe, Shield, Activity } from 'lucide-react';
 
 export default function AccessibilityPage() {
   const channels = [
@@ -68,22 +68,22 @@ export default function AccessibilityPage() {
 
       {/* Key Principles */}
       <div className="stat-grid fade-in">
-        <div className="stat-card green">
-          <div className="stat-icon"><Smartphone size={20} /></div>
-          <div className="stat-value">Zero</div>
-          <div className="stat-label">Smartphone Requirement</div>
+        <div className="stat-card green highlight-stat">
+          <div className="stat-icon"><Activity size={20} /></div>
+          <div className="stat-value">Offline-First</div>
+          <div className="stat-label">Last-Mile Edge Sync</div>
         </div>
-        <div className="stat-card purple">
+        <div className="stat-card purple highlight-stat">
           <div className="stat-icon"><Globe size={20} /></div>
           <div className="stat-value">3+</div>
           <div className="stat-label">Languages Supported</div>
         </div>
-        <div className="stat-card blue">
+        <div className="stat-card blue highlight-stat">
           <div className="stat-icon"><Shield size={20} /></div>
           <div className="stat-value">4</div>
           <div className="stat-label">Alert Channels</div>
         </div>
-        <div className="stat-card yellow">
+        <div className="stat-card yellow highlight-stat">
           <div className="stat-icon"><Heart size={20} /></div>
           <div className="stat-value">100%</div>
           <div className="stat-label">Inclusive Design</div>
